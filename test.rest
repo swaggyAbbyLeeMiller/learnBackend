@@ -1,5 +1,6 @@
-### test GET / WEBSITE
+### this is a client emulator
 
+### test GET / WEBSITE
 GET http://localhost:3000
 
 
@@ -9,3 +10,16 @@ GET http://localhost:3000/dashboard
 
 ### test GET /dashboard API
 GET http://localhost:3000/api/data
+
+
+### DATA ENDPOINT FOR ADDING USER
+POST http://localhost:3000/api/data
+Content-Type: application/json
+
+{
+    "name": "notRandallBoggs"
+}
+
+
+### DELETE ENDPOINT
+DELETE http://localhost:3000/api/data

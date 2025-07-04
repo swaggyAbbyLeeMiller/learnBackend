@@ -9,31 +9,32 @@ const PORT = 3000
 //route is further subdirectory --> direct request to body of code and locations are called endpoints
 //req = request, res = response
 
-let data = {
-    name: 'randall'
-}
+let data = ['randallboggs']
+
+app.use(express.json()) // <-- middleware to parse json data from request body
 
 //website and api endpoints
 //website --> send back HTML and come when user enters url in browser
 app.get('/', (req, res) => {
 
     res.send(`
-        <h1>DATA</h1>
+       
         <body 
             style ="background:blue; color:orange;"> 
-            <p>${JSON.stringify(data)}</p>
+            <h1>DATA:</h1>
+                <p>${JSON.stringify(data)}</p>
+                <a href="/dashboard">Dashboard</a>
         </body>
-        
         `)
-
         })
 
-
-
-
-
 app.get('/dashboard', (req, res) => {
-    res.send('<h1>Dashboard!<h1>')
+    res.send(`
+        <body>
+        <h1>dashboard</h1>
+        <a href="/">Home</a>
+        </body>
+`)
 })
 
 
@@ -47,5 +48,20 @@ app.get('/api/data', (req, res) =>{
 })
 
 
+//posting data to the server
+app.post('/api/data', (req, res) => {
+    //someone wants to create user for sign up
+    //user presses sign up after entering data and browser sends a request to the server to handle action
+    const newEntry = req.body
+    console.log(newEntry)
+    data.push(newEntry.name)
+    res.sendStatus(201)
+})
+
+app.delete('/api/data', (req, res) => {
+    data.pop()
+    console.log('Deleted last entry (last from array)')
+    res.sendStatus(203)
+})
 
 app.listen(PORT, () => console.log('Server is running on port: ' + PORT))
