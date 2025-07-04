@@ -16,15 +16,16 @@ app.use(express.json()) // <-- middleware to parse json data from request body
 //website and api endpoints
 //website --> send back HTML and come when user enters url in browser
 app.get('/', (req, res) => {
-
+    console.log('Someone requested the home page')
     res.send(`
-       
         <body 
             style ="background:blue; color:orange;"> 
             <h1>DATA:</h1>
                 <p>${JSON.stringify(data)}</p>
                 <a href="/dashboard">Dashboard</a>
         </body>
+        <script>console.log('This is a lit script')</script>
+
         `)
         })
 
@@ -44,7 +45,7 @@ app.get('/dashboard', (req, res) => {
 
 app.get('/api/data', (req, res) =>{
     console.log('Sending data')
-    res.send(data)
+    res.status(599).send(data)
 })
 
 
