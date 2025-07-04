@@ -17,8 +17,20 @@ let data = {
 //website --> send back HTML and come when user enters url in browser
 app.get('/', (req, res) => {
 
-    res.send('<h1>Homepage!<h1>')
-})
+    res.send(`
+        <h1>DATA</h1>
+        <body 
+            style ="background:blue; color:orange;"> 
+            <p>${JSON.stringify(data)}</p>
+        </body>
+        
+        `)
+
+        })
+
+
+
+
 
 app.get('/dashboard', (req, res) => {
     res.send('<h1>Dashboard!<h1>')
@@ -26,6 +38,8 @@ app.get('/dashboard', (req, res) => {
 
 
 //api endpoint --> when user enters stuff and sends it to the server, the server processes it and sends back a response
+//CRUD = Method operations 
+//C = create-post, R = read-get, U = update-put, D = delete-delete
 
 app.get('/api/data', (req, res) =>{
     console.log('Sending data')
